@@ -12,7 +12,7 @@ const examples = {
   'example2':
       'All this time MacIan had been in a sort of monstrous delirium, like some fabulous hero snatched up into the moon',
   'example3':
-      'O glorious trial of exceeding Love, Illustrious evidence, example high!'    
+      'O glorious trial of exceeding Love, Illustrious evidence, example high!',
   'example4':
       'The Cape of Good Hope, and all the watery region round about there, is much like some noted four corners of a great highway, where you meet more travellers than in any other part.' 
 };
