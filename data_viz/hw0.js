@@ -12,7 +12,11 @@ function draw() {
   strokeWeight(2);
   noFill();
   arc(200, 200, 240, 240, PI + HALF_PI, PI + HALF_PI + toRad(s*6), OPEN);
-  arc(200, 200, 280, 280, PI + HALF_PI, PI + HALF_PI + toRad(m*6), OPEN);
+  if(m==0){
+    point(200, 340);
+  }else{
+    arc(200, 200, 280, 280, PI + HALF_PI, PI + HALF_PI + toRad(m*6), OPEN);
+  }
   if(h==0){
     point(200, 360);
   }else{
