@@ -16,6 +16,7 @@ function build_test_companies(startDate, endDate, data){
     if(founded_on > startDate && founded_on < endDate){
       continue;
     }
+    console.log(k);
     uid = k[""];
     companies[uid] = [];
     companies[uid].push(k["name"]);
@@ -32,6 +33,7 @@ function build_test_companies(startDate, endDate, data){
     prediction = lerp(parseInt(k[reg_target_refs[i]]), parseInt(k[reg_target_refs[i+1]]), date_dif(founded_on, startDate), duration)
     companies[uid].push(prediction);
   }
+  console.log(companies);
   return companies;
 }
 function build_first_table(companies){
