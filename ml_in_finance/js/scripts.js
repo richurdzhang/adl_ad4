@@ -50,7 +50,7 @@ function build_second_table(companies, nums){
 }
 $(document).ready(function() {
     d3.csv("./output/cleaned_outputs.csv").then(function(data) {
-      console.log(data.slice(0,5); // [{"Hello": "world"}, …]
+      console.log(data.slice(0,5)); // [{"Hello": "world"}, …]
       console.log("HI");
     });
     table1 = $('#table1').DataTable();
