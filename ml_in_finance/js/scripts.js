@@ -85,8 +85,8 @@ function build_second_table(companies, nums){
   sum = 0;
   for (var k in table_dict){
     $("#table2").append("<tr><td>" + table_dict[k][0] + "</td><td>" +
-                 table_dict[k][4].toString() + "%</td></tr>");
-    sum += table_dict[k][4];
+                 table_dict[k][5].toString() + "%</td></tr>");
+    sum += table_dict[k][5];
   }
   change_expected_returns(sum/nums);
 }
