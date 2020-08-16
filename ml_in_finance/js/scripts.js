@@ -43,7 +43,6 @@ function build_test_companies(startDate, endDate, data, table1, table2){
   table2.clear().draw();
   table2.destroy();
   console.log(companies);
-});
   return companies;
 }
 function build_first_table(companies){
