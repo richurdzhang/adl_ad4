@@ -34,6 +34,8 @@ function build_test_companies(startDate, endDate, data, table1, table2){
     if(duration >= 200 && duration < 500){i=0}
           else if(duration >= 500 && duration < 1000){i=1}
 	  else {duration = 2}
+    if(isNan(parseInt(k[reg_target_refs[i]]))){continue;}
+
     prediction = lerp(parseInt(k[reg_target_refs[i]]), parseInt(k[reg_target_refs[i+1]]), date_dif(founded_on, startDate), duration)/100;
     companies[uid].push(prediction);
   }
