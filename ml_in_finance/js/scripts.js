@@ -18,7 +18,6 @@ function build_test_companies(startDate, endDate, data, table1, table2){
 	console.log("Duration");
 	console.log(duration);
   companies = {}
-  reg_targets = [200, 500, 1000, 2000]
   reg_target_refs = ["prediction_200", "prediction_500", "prediction_1000", "prediction_2000"]
   for (var k in data){
     k = data[k];
@@ -34,11 +33,9 @@ function build_test_companies(startDate, endDate, data, table1, table2){
     companies[uid].push(k["short_description"]);
     companies[uid].push(parseInt(k["initial_valuation"]));
     i = 0;
-    for(; i < reg_targets.length - 1; i++){
-      if(duration < reg_targets[i]){
-        continue;
-      }
-    }
+    if(duration >= 200 && duration < 500){i=0}
+          else if(duration >= 500 && duration < 1000){i=1}
+	  else {duration = 2}
     prediction = lerp(parseInt(k[reg_target_refs[i]]), parseInt(k[reg_target_refs[i+1]]), date_dif(founded_on, startDate), duration);
 	  console.log(parseInt(k[reg_target_refs[i]]));
 	  console.log(parseInt(k[reg_target_refs[i+1]]));
