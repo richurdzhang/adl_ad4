@@ -1,9 +1,17 @@
 function lerp(val1, val2, f_dif, range){
 	return val1 + (val2 - val1) * (f_dif/range);
 }
-function date_dif(date1, date2){
-  d = new Date(date1.getTime() - date2.getTime())
-  return d.getUTCDate() - 1;
+function date_dif(date1, date2) {
+
+    // The number of milliseconds in one day
+    const ONE_DAY = 1000 * 60 * 60 * 24;
+
+    // Calculate the difference in milliseconds
+    const differenceMs = Math.abs(date1 - date2);
+
+    // Convert back to days and return
+    return Math.round(differenceMs / ONE_DAY);
+
 }
 function build_test_companies(startDate, endDate, data, table1, table2){
   duration = date_dif(endDate, startDate);
