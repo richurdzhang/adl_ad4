@@ -15,8 +15,6 @@ function date_dif(date1, date2) {
 }
 function build_test_companies(startDate, endDate, data, table1, table2){
   duration = date_dif(endDate, startDate);
-	console.log("Duration");
-	console.log(duration);
   companies = {}
   reg_target_refs = ["prediction_200", "prediction_500", "prediction_1000", "prediction_2000"]
   for (var k in data){
@@ -37,13 +35,8 @@ function build_test_companies(startDate, endDate, data, table1, table2){
           else if(duration >= 500 && duration < 1000){i=1}
 	  else {duration = 2}
     prediction = (lerp(parseInt(k[reg_target_refs[i]]), parseInt(k[reg_target_refs[i+1]]), date_dif(founded_on, startDate), duration)/100).toFixed(2);
-	  console.log(parseInt(k[reg_target_refs[i]]));
-	  console.log(parseInt(k[reg_target_refs[i+1]]));
-	  console.log(date_dif(founded_on, startDate));
     companies[uid].push(prediction);
   }
-  console.log(Object.keys(companies).length);
-  console.log(companies);
   table1.clear().draw();
   table1.destroy();
   table2.clear().draw();
@@ -87,13 +80,15 @@ function build_second_table(companies, nums){
     $("#table2").append("<tr><td>" + table_dict[k][0] + "</td><td>" +
                  table_dict[k][5].toString() + "%</td></tr>");
     sum += table_dict[k][5];
+	  console.log(table_dict[k][5]);
   }
+	console.log(sum);
+	console.log(nums);
   change_expected_returns(sum/nums);
 }
 $(document).ready(function() {
     output = [];
     d3.csv("./output/cleaned_outputs.csv").then(function(data) {
-      console.log(data);
       output = data;
     });
     table1 = $('#table1').DataTable();
@@ -102,8 +97,6 @@ $(document).ready(function() {
     $('#submit').on('click', function() {
       startDate = new Date($("#startDate").val());
       endDate = new Date($("#endDate").val());
-      console.log(startDate);
-      console.log(endDate);
       test_companies = build_test_companies(startDate, endDate, output, table1, table2);
       build_first_table(test_companies);
     });
