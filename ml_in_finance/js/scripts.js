@@ -89,6 +89,14 @@ function build_second_table(companies, nums){
 	console.log(nums);
   change_expected_returns(sum/nums);
 }
+function clean(obj) {
+  for (var propName in obj) { 
+    if (obj[propName] === null || obj[propName] === undefined) {
+      delete obj[propName];
+    }
+  }
+}
+
 $(document).ready(function() {
     output = [];
     d3.csv("./output/cleaned_outputs.csv").then(function(data) {
@@ -101,7 +109,9 @@ $(document).ready(function() {
       e.preventDefault();
       startDate = new Date($("#startDate").val());
       endDate = new Date($("#endDate").val());
+	    
       test_companies = build_test_companies(startDate, endDate, output, table1, table2);
+      clean(test_companies);
       build_first_table(test_companies);
     });
     $('.dropdown-menu a').on('click', function() {
