@@ -43,7 +43,6 @@ function build_first_table(companies){
   $("#table1 tbody").empty();
   $("#table1").append("<tbody>")
   for (var k in companies){
-    console.log(companies[k][0])
     $("#table1").append("<tr><td>" +
                   companies[k][0] + "</td><td>" +
                   companies[k][1] + "</td><td>" +
