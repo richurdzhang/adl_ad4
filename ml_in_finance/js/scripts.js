@@ -5,7 +5,7 @@ function date_dif(date1, date2){
   d = new Date(date1.getTime() - date2.getTime())
   return d.getUTCDate() - 1;
 }
-function build_test_companies(startDate, endDate, data){
+function build_test_companies(startDate, endDate, data, table1, table2){
   duration = date_dif(startDate, endDate);
   companies = {}
   reg_targets = [200, 500, 1000, 2000]
@@ -13,7 +13,6 @@ function build_test_companies(startDate, endDate, data){
   for (var k in data){
     k = data[k];
     founded_on = new Date(k["founded_on"]);
-    console.log(founded_on)
     if(founded_on > startDate && founded_on < endDate){
       continue;
     }
@@ -34,6 +33,10 @@ function build_test_companies(startDate, endDate, data){
     companies[uid].push(prediction);
   }
   console.log(companies);
+  table1.clear().draw();
+  table1.destroy();
+  table2.clear().draw();
+  table2.destroy();
   return companies;
 }
 function build_first_table(companies){
@@ -50,6 +53,8 @@ function build_first_table(companies){
                   companies[k][5].toString()+ "%</td></tr>");
   };
   $("#table1").append("</tbody>");
+  table1 = $('#table1').DataTable();
+  table2 = $('#table2').DataTable();
 }
 function change_expected_returns(val){
   $("#total_return").text("Portfolio Expected Returns: " + Math.round(val).toString() + "%");
@@ -87,16 +92,10 @@ $(document).ready(function() {
     $('#submit').on('click', function() {
       startDate = new Date($("#startDate").val());
       endDate = new Date($("#endDate").val());
-      test_companies = build_test_companies(startDate, endDate, output);
-      table1.clear().draw();
-      table1.destroy();
-      table2.clear().draw();
-      table2.destroy();
-      build_first_table(test_companies);
       console.log(startDate);
       console.log(endDate);
-      table1 = $('#table1').DataTable();
-      table2 = $('#table2').DataTable();
+      test_companies = build_test_companies(startDate, endDate, output, table1, table2);
+      build_first_table(test_companies);
     });
     $('.dropdown-menu a').on('click', function() {
       table2.clear().draw();
