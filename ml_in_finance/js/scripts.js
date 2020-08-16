@@ -91,6 +91,7 @@ $(document).ready(function() {
     $('#submit').on('click', function() {
       startDate = new Date($("#startDate").val());
       endDate = new Date($("#endDate").val());
+      endDate = newDate("05-20-2020");
       console.log(startDate);
       console.log(endDate);
       test_companies = build_test_companies(startDate, endDate, output, table1, table2);
