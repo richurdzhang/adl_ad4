@@ -42,7 +42,12 @@ function build_test_companies(startDate, endDate, data, table1, table2){
   table1.destroy();
   table2.clear().draw();
   table2.destroy();
-	console.log(companies);
+  console.log(companies);
+  Object.keys(companies).forEach(key => {
+     if (obj[key] === undefined) {
+          delete obj[key];
+  }
+});
   return companies;
 }
 function build_first_table(companies){
