@@ -11,7 +11,8 @@ function build_test_companies(startDate, endDate, data){
   reg_targets = [200, 500, 1000, 2000]
   reg_target_refs = ["prediction_200", "prediction_500", "prediction_1000", "prediction_2000"]
   for (var k in data){
-    founded_on = new Date (k["founded_on"]);
+    console.log(k)
+    founded_on = new Date(k["founded_on"]);
     if(founded_on > startDate && founded_on < endDate){
       continue;
     }
@@ -31,7 +32,6 @@ function build_test_companies(startDate, endDate, data){
     prediction = lerp(parseInt(k[reg_target_refs[i]]), parseInt(k[reg_target_refs[i+1]]), date_dif(founded_on, startDate), duration)
     companies[uid].push(prediction);
   }
-  console.log(companies);
   return companies;
 }
 function build_first_table(companies){
