@@ -34,7 +34,7 @@ function build_test_companies(startDate, endDate, data, table1, table2){
     if(duration >= 200 && duration < 500){i=0}
           else if(duration >= 500 && duration < 1000){i=1}
 	  else {duration = 2}
-    prediction = (lerp(parseInt(k[reg_target_refs[i]]), parseInt(k[reg_target_refs[i+1]]), date_dif(founded_on, startDate), duration)/100).toFixed(2);
+    prediction = lerp(parseInt(k[reg_target_refs[i]]), parseInt(k[reg_target_refs[i+1]]), date_dif(founded_on, startDate), duration)/100;
     companies[uid].push(prediction);
   }
   table1.clear().draw();
@@ -53,7 +53,7 @@ function build_first_table(companies){
                   companies[k][2] + "</td><td>" +
                   companies[k][3] + "</td><td>" +
                   companies[k][4].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</td><td>" +
-                  companies[k][5].toString()+ "%</td></tr>");
+                  companies[k][5].toFixed(2).toString()+ "%</td></tr>");
   };
   $("#table1").append("</tbody>");
   table1 = $('#table1').DataTable();
@@ -78,7 +78,7 @@ function build_second_table(companies, nums){
   sum = 0;
   for (var k in table_dict){
     $("#table2").append("<tr><td>" + table_dict[k][0] + "</td><td>" +
-                 table_dict[k][5].toString() + "%</td></tr>");
+                 table_dict[k][5].toFixed(2).toString() + "%</td></tr>");
     sum += table_dict[k][5];
 	  console.log(table_dict[k][5]);
   }
