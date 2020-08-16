@@ -91,7 +91,7 @@ function build_second_table(companies, nums){
 }
 function clean(obj) {
   for (var propName in obj) { 
-    if (obj[propName] === null || obj[propName] === undefined) {
+    if (propName === null || propName === undefined) {
       delete obj[propName];
     }
   }
