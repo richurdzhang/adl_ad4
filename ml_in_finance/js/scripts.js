@@ -2,7 +2,7 @@ function lerp(val1, val2, f_dif, range){
 	return val1 + (val2 - val1) * (f_dif/range);
 }
 function date_dif(date1, date2){
-  d = new Date(a.getTime() - c.getTime())
+  d = new Date(date1.getTime() - date2.getTime())
   return d.getUTCDate() - 1;
 }
 function build_test_companies(startDate, endDate, data){
@@ -83,9 +83,6 @@ $(document).ready(function() {
     $('#submit').on('click', function() {
       startDate = new Date($("#startDate").val());
       endDate = new Date($("#endDate").val());
-      console.log(startDate);
-      console.log(startDate);
-      console.log(output);
       test_companies = build_test_companies(startDate, endDate, output);
       table1.clear().draw();
       table1.destroy();
