@@ -11,7 +11,7 @@ function build_test_companies(startDate, endDate, data){
   reg_targets = [200, 500, 1000, 2000]
   reg_target_refs = ["prediction_200", "prediction_500", "prediction_1000", "prediction_2000"]
   for (var k in data){
-    console.log(k)
+    //console.log(k)
     founded_on = new Date(k["founded_on"]);
     if(founded_on > startDate && founded_on < endDate){
       continue;
