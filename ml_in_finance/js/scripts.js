@@ -97,7 +97,8 @@ $(document).ready(function() {
     table1 = $('#table1').DataTable();
     table2 = $('#table2').DataTable();
 
-    $('#submit').on('click', function() {
+    $('#submit').on('click', function(e) {
+      e.preventDefault();
       startDate = new Date($("#startDate").val());
       endDate = new Date($("#endDate").val());
       test_companies = build_test_companies(startDate, endDate, output, table1, table2);
