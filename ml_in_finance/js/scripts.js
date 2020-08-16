@@ -6,7 +6,9 @@ function date_dif(date1, date2){
   return d.getUTCDate() - 1;
 }
 function build_test_companies(startDate, endDate, data, table1, table2){
-  duration = date_dif(startDate, endDate);
+  duration = date_dif(endDate, startDate);
+	console.log("Duration");
+	console.log(duration);
   companies = {}
   reg_targets = [200, 500, 1000, 2000]
   reg_target_refs = ["prediction_200", "prediction_500", "prediction_1000", "prediction_2000"]
@@ -29,11 +31,8 @@ function build_test_companies(startDate, endDate, data, table1, table2){
         continue;
       }
     }
+	  console.log(i);
     prediction = lerp(parseInt(k[reg_target_refs[i]]), parseInt(k[reg_target_refs[i+1]]), date_dif(founded_on, startDate), duration);
-	  console.log(k[reg_target_refs[i]]);
-	  console.log(k[reg_target_refs[i+1]]);
-	  console.log(date_dif(founded_on, startDate));
-	  console.log(duration);
     companies[uid].push(prediction);
   }
   console.log(Object.keys(companies).length);
