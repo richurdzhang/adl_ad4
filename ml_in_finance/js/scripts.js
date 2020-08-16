@@ -1,15 +1,37 @@
-function build_test_companies(){
-  test_companies = {};
-  num_companies = (Math.floor(Math.random()*5) + 1)*100;
-  for (i = 1; i <= num_companies; i++){
-    test_companies[i] = [];
-    test_companies[i].push("Startup" + i.toString());
-    test_companies[i].push("Founder" + i.toString());
-    test_companies[i].push("Description" + i.toString());
-    test_companies[i].push(Math.ceil(Math.round(Math.random()*9 + 1)*1000000));
-    test_companies[i].push(Math.round(Math.random()*80));
+function lerp(val1, val2, f_dif, range){
+	return val1 + (val2 - val1) * (f_dif/range);
+}
+function date_dif(date1, date2){
+  d = new Date(a.getTime() - c.getTime())
+  return d.getUTCDate() - 1;
+}
+function build_test_companies(startDate, endDate, data){
+  duration = date_dif(startDate, endDate);
+  companies = {}
+  reg_targets = [200, 500, 1000, 2000]
+  reg_target_refs = ["prediction_200", "prediction_500", "prediction_1000", "prediction_2000"]
+  for (var k in data){
+    founded_on = new Date (k["founded_on"]);
+    if(founded_on > startDate && founded_on < endDate){
+      continue;
+    }
+    uid = k[""];
+    companies[uid] = [];
+    companies[uid].push(k["name"]);
+    companies[uid].push(k["founded_on"]);
+    companies[uid].push(k["founder_names"]);
+    companies[uid].push(parseInt(k["initial_valuation"]));
+    companies[uid].push(k["short_description"]);
+    i = 0;
+    for(; i < len(time_spans) - 1; i++){
+      if(duration > reg_targets[i]){
+        continue;
+      }
+    }
+    prediction = lerp(parseInt(k[reg_target_refs[i]]), parseInt(k[reg_target_refs[i+1]]), date_dif(founded_on, startDate), duration)
+    companies[uid].push(prediction);
   }
-  return test_companies;
+  return companies;
 }
 function build_first_table(companies){
   $("#table1 tbody").empty();
@@ -19,8 +41,9 @@ function build_first_table(companies){
                   companies[k][0] + "</td><td>" +
                   companies[k][1] + "</td><td>" +
                   companies[k][2] + "</td><td>" +
-                  companies[k][3].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</td><td>" +
-                  companies[k][4].toString()+ "%</td></tr>");
+                  companies[k][3] + "</td><td>" +
+                  companies[k][4].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</td><td>" +
+                  companies[k][5].toString()+ "%</td></tr>");
   };
   $("#table1").append("</tbody>");
 }
@@ -32,7 +55,7 @@ function build_second_table(companies, nums){
     return [key, companies[key]];
   });
   items.sort(function(first, second) {
-    return second[1][4] - first[1][4];
+    return second[1][5] - first[1][5];
   });
   table_dict = {};
   for (var k in items.slice(0, nums)){
@@ -49,15 +72,18 @@ function build_second_table(companies, nums){
   change_expected_returns(sum/nums);
 }
 $(document).ready(function() {
+    output = [];
     d3.csv("./output/cleaned_outputs.csv").then(function(data) {
-      console.log(data.slice(0,5)); // [{"Hello": "world"}, …]
-      console.log("ohaiyo");
+      console.log(data);
+      output = data;
     });
     table1 = $('#table1').DataTable();
     table2 = $('#table2').DataTable();
-    var test_companies = {};
+
     $('#submit').on('click', function() {
-      test_companies = build_test_companies();
+      startDate = new Date($("#startDate").val());
+      endDate = new Date($("#endDate").val());
+      test_companies = build_test_companies(startDate, endDate, output);
       table1.clear().draw();
       table1.destroy();
       table2.clear().draw();
