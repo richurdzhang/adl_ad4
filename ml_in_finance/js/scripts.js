@@ -35,8 +35,9 @@ function build_test_companies(startDate, endDate, data, table1, table2){
           else if(duration >= 500 && duration < 1000){i=1}
 	  else {i = 2}
 
-    prediction = lerp(parseInt(k[reg_target_refs[i]]), parseInt(k[reg_target_refs[i+1]]), date_dif(founded_on, startDate), duration)/100;
+    prediction = lerp(parseInt(k[reg_target_refs[i]]), parseInt(k[reg_target_refs[i+1]]), date_dif(founded_on, startDate), duration);
     companies[uid].push(prediction);
+  	console.log(prediction);
   }
   table1.clear().draw();
   table1.destroy();
