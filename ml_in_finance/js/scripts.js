@@ -83,6 +83,9 @@ $(document).ready(function() {
     $('#submit').on('click', function() {
       startDate = new Date($("#startDate").val());
       endDate = new Date($("#endDate").val());
+      console.log(startDate);
+      console.log(startDate);
+      console.log(output);
       test_companies = build_test_companies(startDate, endDate, output);
       table1.clear().draw();
       table1.destroy();
