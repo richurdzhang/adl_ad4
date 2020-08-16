@@ -23,7 +23,7 @@ function build_test_companies(startDate, endDate, data){
     companies[uid].push(parseInt(k["initial_valuation"]));
     companies[uid].push(k["short_description"]);
     i = 0;
-    for(; i < timespans.length - 1; i++){
+    for(; i < reg_targets.length - 1; i++){
       if(duration > reg_targets[i]){
         continue;
       }
