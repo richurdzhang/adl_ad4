@@ -20,8 +20,8 @@ function build_test_companies(startDate, endDate, data){
     companies[uid].push(k["name"]);
     companies[uid].push(k["founded_on"]);
     companies[uid].push(k["founder_names"]);
-    companies[uid].push(parseInt(k["initial_valuation"]));
     companies[uid].push(k["short_description"]);
+    companies[uid].push(parseInt(k["initial_valuation"]));
     i = 0;
     for(; i < reg_targets.length - 1; i++){
       if(duration > reg_targets[i]){
@@ -31,6 +31,7 @@ function build_test_companies(startDate, endDate, data){
     prediction = lerp(parseInt(k[reg_target_refs[i]]), parseInt(k[reg_target_refs[i+1]]), date_dif(founded_on, startDate), duration)
     companies[uid].push(prediction);
   }
+  console.log(companies);
   return companies;
 }
 function build_first_table(companies){
