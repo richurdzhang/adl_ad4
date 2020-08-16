@@ -93,6 +93,8 @@ $(document).ready(function() {
       table2.clear().draw();
       table2.destroy();
       build_first_table(test_companies);
+      console.log(startDate);
+      console.log(endDate);
       table1 = $('#table1').DataTable();
       table2 = $('#table2').DataTable();
     });
