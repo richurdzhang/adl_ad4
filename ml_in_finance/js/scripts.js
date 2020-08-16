@@ -17,7 +17,7 @@ function build_test_companies(startDate, endDate, data, table1, table2){
   duration = date_dif(endDate, startDate);
   companies = {}
   reg_target_refs = ["prediction_200", "prediction_500", "prediction_1000", "prediction_2000"]
-  for (c = 0; c < Objects.keys(data).length - 1; c++){
+  for (c = 0; c < Object.keys(data).length - 1; c++){
     k = data[c];
     founded_on = new Date(k["founded_on"]);
     if(founded_on < startDate || founded_on > endDate){
