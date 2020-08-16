@@ -27,12 +27,14 @@ function build_test_companies(startDate, endDate, data, table1, table2){
     companies[uid].push(parseInt(k["initial_valuation"]));
     i = 0;
     for(; i < reg_targets.length - 1; i++){
-      if(duration > reg_targets[i]){
+      if(duration < reg_targets[i]){
         continue;
       }
     }
-	  console.log(i);
     prediction = lerp(parseInt(k[reg_target_refs[i]]), parseInt(k[reg_target_refs[i+1]]), date_dif(founded_on, startDate), duration);
+	  console.log(parseInt(k[reg_target_refs[i]]));
+	  console.log(parseInt(k[reg_target_refs[i+1]]));
+	  console.log(date_dif(founded_on, startDate));
     companies[uid].push(prediction);
   }
   console.log(Object.keys(companies).length);
