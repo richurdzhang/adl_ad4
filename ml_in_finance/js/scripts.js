@@ -34,12 +34,14 @@ function build_test_companies(startDate, endDate, data){
     companies[uid].push(prediction);
   }
   console.log(companies);
+  console.log(companies.length);
   return companies;
 }
 function build_first_table(companies){
   $("#table1 tbody").empty();
   $("#table1").append("<tbody>")
   for (var k in companies){
+    console.log(k);
     $("#table1").append("<tr><td>" +
                   companies[k][0] + "</td><td>" +
                   companies[k][1] + "</td><td>" +
