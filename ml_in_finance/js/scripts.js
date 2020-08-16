@@ -13,10 +13,10 @@ function build_test_companies(startDate, endDate, data){
   for (var k in data){
     k = data[k];
     founded_on = new Date(k["founded_on"]);
+    console.log(founded_on)
     if(founded_on > startDate && founded_on < endDate){
       continue;
     }
-    console.log(k);
     uid = k[""];
     companies[uid] = [];
     companies[uid].push(k["name"]);
@@ -34,15 +34,13 @@ function build_test_companies(startDate, endDate, data){
     companies[uid].push(prediction);
   }
   console.log(companies);
-  console.log(companies.length);
   return companies;
 }
 function build_first_table(companies){
   $("#table1 tbody").empty();
   $("#table1").append("<tbody>")
   for (var k in companies){
-    k = companies[k];
-    console.log(k);
+    console.log(companies[k][0])
     $("#table1").append("<tr><td>" +
                   companies[k][0] + "</td><td>" +
                   companies[k][1] + "</td><td>" +
