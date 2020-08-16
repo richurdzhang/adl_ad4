@@ -20,7 +20,7 @@ function build_test_companies(startDate, endDate, data, table1, table2){
   for (var k in data){
     k = data[k];
     founded_on = new Date(k["founded_on"]);
-    if(founded_on === undefined || founded_on === null || typeof founded_on === undefined || founded_on == "undefined" || founded_on < startDate || founded_on > endDate){
+    if(isNaN(founded_on.getTime()) || founded_on < startDate || founded_on > endDate){
       continue;
     }
       console.log(founded_on);
