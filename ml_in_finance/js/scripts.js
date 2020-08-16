@@ -29,7 +29,11 @@ function build_test_companies(startDate, endDate, data, table1, table2){
         continue;
       }
     }
-    prediction = lerp(parseInt(k[reg_target_refs[i]]), parseInt(k[reg_target_refs[i+1]]), date_dif(founded_on, startDate), duration)
+    prediction = lerp(parseInt(k[reg_target_refs[i]]), parseInt(k[reg_target_refs[i+1]]), date_dif(founded_on, startDate), duration);
+	  console.log(k[reg_target_refs[i]]);
+	  console.log(k[reg_target_refs[i+1]]);
+	  console.log(date_dif(founded_on, startDate));
+	  console.log(duration);
     companies[uid].push(prediction);
   }
   console.log(Object.keys(companies).length);
@@ -92,7 +96,6 @@ $(document).ready(function() {
     $('#submit').on('click', function() {
       startDate = new Date($("#startDate").val());
       endDate = new Date($("#endDate").val());
-      endDate = new Date("05-20-2020");
       console.log(startDate);
       console.log(endDate);
       test_companies = build_test_companies(startDate, endDate, output, table1, table2);
