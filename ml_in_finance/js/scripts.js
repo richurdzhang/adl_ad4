@@ -65,8 +65,8 @@ function build_first_table(companies){
   table1 = $('#table1').DataTable();
   table2 = $('#table2').DataTable();
 }
-function change_expected_returns(val){
-  $("#total_return").text("Portfolio Expected Returns: " + Math.round(val).toString() + "%");
+function change_expected_returns(num, val){
+  $("#total_return").text("Portfolio Size: " + num.toString() + " Portfolio Expected Returns: " + Math.round(val).toString() + "%");
 }
 function build_second_table(companies, nums){
   var items = Object.keys(companies).map(function(key) {
@@ -90,7 +90,7 @@ function build_second_table(companies, nums){
   }
 	console.log(sum);
 	console.log(nums);
-  change_expected_returns(sum/nums);
+  change_expected_returns(nums, sum/nums);
 }
 $(document).ready(function() {
     output = [];
