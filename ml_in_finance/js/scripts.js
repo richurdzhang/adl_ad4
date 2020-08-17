@@ -66,7 +66,8 @@ function build_first_table(companies){
   table2 = $('#table2').DataTable();
 }
 function change_expected_returns(num, val){
-  $("#total_return").text("Portfolio Size: " + num.toString() + "    Portfolio Expected Returns: " + Math.round(val).toString() + "%");
+  $("#total_return").text("Portfolio Expected Returns: " + Math.round(val).toString() + "%");
+  $("#total_size").text("Portfolio Size: " + num.toString());
 }
 function build_second_table(companies, nums){
   var items = Object.keys(companies).map(function(key) {
